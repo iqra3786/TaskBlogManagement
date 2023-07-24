@@ -1,31 +1,31 @@
 const mongoose=require('mongoose')
 const adminSchema=new mongoose.Schema({
     "firstName":{
-        type:String(),
+        type:String,
         required:true,
         trim:true
     },
     "lastName":{
-        type:String(),
+        type:String,
         required:true,
         trim:true
     },
     "title":{
-        type:String(),
+        type:String,
         required:true,
 
     },
     "email":{
-        type:String(),
+        type:String,
         required:true,
         unique:true
     },
     "password":{
-        type:String(),
+        type:String,
         required:true,
     
     },
-    "isDeletd":{
+    "isDeleted":{
         type:Boolean,
         default:false
     },

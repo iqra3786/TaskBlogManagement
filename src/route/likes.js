@@ -1,10 +1,12 @@
 const express=require('express')
 const { asyncWrapper } = require('../helpers/helper')
-const{blogliked}=require('../controller/likeController')
+const{blogliked, commentOnBlog,commentReply}=require('../controller/likeController')
 
 
 const router=express.Router()
 
-router.post('/add-likes',asyncWrapper(blogliked)
-)
+router.post('/add-likes',asyncWrapper(blogliked))
+router.post('/add-comment',asyncWrapper(commentOnBlog))
+router.post('/comments/:commentId/reply', asyncWrapper(commentReply))
+
 module.exports=router

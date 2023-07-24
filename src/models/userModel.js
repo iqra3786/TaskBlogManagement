@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema({
     },
     title:{
         type:String,
-        required:true,
+       
 
     },
     email:{
@@ -30,6 +30,10 @@ const userSchema=new mongoose.Schema({
         default:false
     },
     token:{
+        type:String,
+        default:null
+    },
+    googleId:{
         type:String,
         default:null
     }

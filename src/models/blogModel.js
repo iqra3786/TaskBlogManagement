@@ -6,10 +6,9 @@ const blogSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String,
-        required: true
+        type: String
     },
-    userId: {
+    userId:{
         type: ObjectId,
         ref: 'user',
         required: true
@@ -45,6 +44,11 @@ const blogSchema = new mongoose.Schema({
     like:{
         type:Number,
         default:0
+    },
+    comment:{
+        type: ObjectId,
+        ref: 'comment',
+        
     }
 }, {
     timestamps: true

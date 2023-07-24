@@ -21,13 +21,35 @@ exports.responseError = (req, res, message, data = null, statusCode = 400) => {
     })
 }
 
-exports.asyncWrapper = (cb) => {
-    return (req, res, next) => cb(req, res, next).catch((err) => {
-        console.log(err.message)
-        return res.status(500).json({ success: false, message: err.message, data: null })
-    })
-}
+// exports.asyncWrapper = (cb) => {
+//     return (req, res, next) => cb(req, res, next).catch((err) => {
+//         console.log(err.message)
+//         return res.status(500).json({ success: false, message: err.message, data: null })
+//     })
+// }
 
+// exports.asyncWrapper = (cb) => {
+//     return async (req, res, next) => {
+//       try {
+//         await cb(req, res, next);
+//       } catch (err) {
+//         console.log(err.message);
+//         return res.status(500).json({ success: false, message: err.message, data: null });
+//       }
+//     };
+//   };
+  
+exports.asyncWrapper = (cb) => {
+    return async (req, res, next) => {
+      try {
+        await Promise.resolve(cb(req, res, next));
+      } catch (err) {
+        console.log(err.message);
+        return res.status(500).json({ success: false, message: err.message, data: null });
+      }
+    };
+  };
+  
 exports.verifyJWTTokenSync = (token, type) => {
     const key = type == "normal" ? process.env.ACCESS_TOKEN_SECRET : process.env.REFRESH_TOKEN_SECRET
     return this.verifyJWTToken.verify(token, key, (err, decoded) => err || !decoded ? false : decoded)

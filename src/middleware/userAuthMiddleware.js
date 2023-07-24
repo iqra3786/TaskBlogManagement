@@ -21,7 +21,7 @@ exports.authentication = async function (req, res, next) {
                 else {
     
                     req.token = tokenVerify
-                    // console.log(req.token)
+                    console.log(req.token)
                     // req.token.id = decodeToken
                     //const user = await userModel.findById(req.token.id)
                     // if (user) {
